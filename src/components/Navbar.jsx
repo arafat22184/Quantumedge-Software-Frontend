@@ -4,6 +4,23 @@ import logo from "../assets/logo.png";
 import { BiCategory } from "react-icons/bi";
 
 const Navbar = () => {
+  const user = false;
+  const conditionalLink = user ? (
+    <p>Hello user</p>
+  ) : (
+    <>
+      <Link to={"/login"} className="hover:text-[#05AF2B] cursor-pointer">
+        Login
+      </Link>
+      <Link
+        to={"/register"}
+        className="py-2.5 px-5 bg-[#05AF2B] rounded-[46px]"
+      >
+        Register
+      </Link>
+    </>
+  );
+
   return (
     <nav className="navbar py-5 max-w-7xl mx-auto text-sm font-semibold text-white">
       <div className="navbar-start">
@@ -45,18 +62,7 @@ const Navbar = () => {
               <p className="hover:text-[#05AF2B] cursor-pointer">
                 BECAME A SELLER
               </p>
-              <Link
-                to={"/login"}
-                className="hover:text-[#05AF2B] cursor-pointer"
-              >
-                Login
-              </Link>
-              <Link
-                to={"/register"}
-                className="py-2.5 px-5 bg-[#05AF2B] rounded-[46px]"
-              >
-                Register
-              </Link>
+              {conditionalLink}
             </div>
           </div>
         </div>
@@ -85,15 +91,7 @@ const Navbar = () => {
         </form>
         <div className="flex gap-7 items-center">
           <p className="hover:text-[#05AF2B] cursor-pointer">BECAME A SELLER</p>
-          <Link to={"/login"} className="hover:text-[#05AF2B] cursor-pointer">
-            Login
-          </Link>
-          <Link
-            to={"/register"}
-            className="py-2.5 px-5 bg-[#05AF2B] rounded-[46px]"
-          >
-            Register
-          </Link>
+          {conditionalLink}
         </div>
       </div>
     </nav>

@@ -1,9 +1,11 @@
 import React from "react";
 import { LuSearch } from "react-icons/lu";
+import star from "../assets/Star.png";
 
 const Banner = () => {
   return (
-    <section className="bg-[#071400] mb-80">
+    <section className="bg-[#071400] mb-23 relative">
+      {/* Search Method */}
       <form className="max-w-[1400px] mx-auto space-x-5.5 pt-[77px] pb-23 border-t-2 border-[#CCCCCC]/6">
         <div className="relative inline-block">
           <input
@@ -29,6 +31,13 @@ const Banner = () => {
           type="submit"
           value="Advanced search"
           className="bg-[#05AF2B] text-white mt-4 px-4 py-4 rounded-[46px]"
+        />
+
+        {/* Star */}
+        <img
+          className="absolute bottom-6 w-[111px] h-[111px] right-130"
+          src={star}
+          alt="Star"
         />
       </form>
     </section>

@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 const MainLayout = () => {
   return (
     <div className="relative">
-      <header className="bg-[#071400] sticky top-0 z-50 border-b-2 border-[#CCCCCC]">
+      <header className="bg-[#071400] border-b-2 border-[#CCCCCC]">
         <Navbar></Navbar>
         {/* Flare effect */}
         <div className="absolute inset-0 -left-20 -top-28 pointer-events-none">

@@ -3,6 +3,8 @@ import logo from "../assets/logo.png";
 import { Link } from "react-router";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import footerImage from "../assets/footerImage.png";
+
 const Footer = () => {
   return (
     <footer className="bg-[#071400] py-11">
@@ -95,9 +97,9 @@ const Footer = () => {
         </div>
 
         {/* Social-Media Icon & Latest Posts */}
-        <div>
+        <div className="grid grid-cols-2 items-center mt-[17px] pb-[34px] border-b-2 border-[#CCCCCC]/6">
           {/* Social-Media Icons */}
-          <div className="flex gap-[14px]">
+          <div className="flex gap-[14px] relative">
             <a
               className="rounded-full w-10 h-10 bg-[#05AF2B] text-white flex items-center justify-center"
               href="https://www.facebook.com/"
@@ -119,8 +121,47 @@ const Footer = () => {
             >
               <FaXTwitter size={24} />
             </a>
+
+            {/* Flare effect */}
+            <div className="absolute inset-0 -top-4 left-4 pointer-events-none">
+              <div className="absolute w-[120px] h-[100px] bg-[#05AF2B] opacity-80 blur-[90px] rounded-full"></div>
+            </div>
+          </div>
+
+          {/* Latest Posts */}
+          <div>
+            <h1 className="text-lg text-white font-bold mb-[21px]">
+              Our Popular Post
+            </h1>
+            <div className="flex">
+              {/* 1st popular post */}
+              <div className="flex gap-[18px]">
+                <img src={footerImage} alt="Popular post" />
+                <div className="space-y-[9px]">
+                  <p className="text-[#CCCCCC] text-[12px]">November 7,2024</p>
+                  <h4 className="text-white text-sm font-semibold">
+                    Unveils the Best Canadian Cities for Biking
+                  </h4>
+                </div>
+              </div>
+
+              {/* 2nd Popular post */}
+              <div className="flex gap-[18px]">
+                <img src={footerImage} alt="Popular post" />
+                <div className="space-y-[9px]">
+                  <p className="text-[#CCCCCC] text-[12px]">November 7,2024</p>
+                  <h4 className="text-white text-sm font-semibold">
+                    Unveils the Best Canadian Cities for Biking
+                  </h4>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        <p className="text-center text-[#CCCCCC] font-semibold text-sm pt-[30px]">
+          &copy; QuantumEdge Software INC. 2025. All rights reserved.
+        </p>
       </div>
     </footer>
   );

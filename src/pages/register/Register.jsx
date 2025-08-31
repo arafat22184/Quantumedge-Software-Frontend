@@ -22,9 +22,9 @@ const Register = () => {
 
   return (
     <section>
-      <div className="max-w-7xl mx-auto bg-[#071400] flex my-12 p-10 pl-[119px] rounded-[28px] justify-between gap-36 text-[#4B4B4B] text-center text-sm font-semibold">
+      <div className="max-w-7xl mx-2 xl:mx-auto bg-[#071400] flex my-12 p-10 lg:pl-[119px] rounded-[28px] justify-between gap-36 text-[#4B4B4B] text-center text-sm font-semibold">
         {/* Form */}
-        <div className="flex-1 max-w-[447px]">
+        <div className="flex-1 lg:max-w-[447px]">
           {/* Heading */}
           <h3 className="text-[32px] font-bold text-white">
             Open your account
@@ -125,7 +125,7 @@ const Register = () => {
         </div>
 
         {/* Image */}
-        <div className="flex-1 relative">
+        <div className="flex-1 relative hidden lg:block">
           <div className="inverted-radius-top h-full">
             <img
               src={regimg}

@@ -14,7 +14,7 @@ const Navbar = () => {
       </Link>
       <Link
         to={"/register"}
-        className="py-2.5 px-5 bg-[#05AF2B] rounded-[46px]"
+        className="py-2.5 px-5 bg-[#05AF2B] rounded-[46px] lg:hidden xl:block"
       >
         Register
       </Link>
@@ -70,7 +70,7 @@ const Navbar = () => {
           <Link to={"/"}>
             <img className="max-w-[234px]" src={logo} alt="logo"></img>
           </Link>
-          <div className="flex items-center gap-[5px] text-[#05AF2B] px-3 py-1 border border-[#05AF2B] rounded-[29px]">
+          <div className="hidden md:flex items-center gap-[5px] text-[#05AF2B] px-3 py-1 border border-[#05AF2B] rounded-[29px] ">
             <BiCategory />
             Categories
           </div>

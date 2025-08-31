@@ -5,9 +5,13 @@ import Footer from "../components/Footer";
 
 const MainLayout = () => {
   return (
-    <div>
-      <header className="bg-[#071400] sticky top-0 z-50">
+    <div className="relative">
+      <header className="bg-[#071400] sticky top-0 z-50 border-b-2 border-[#CCCCCC]">
         <Navbar></Navbar>
+        {/* Flare effect */}
+        <div className="absolute inset-0 -left-20 -top-28 pointer-events-none">
+          <div className="absolute w-[405px] h-[368px] bg-[#05AF2B] opacity-30 blur-[120px] rounded-full"></div>
+        </div>
       </header>
       <Outlet></Outlet>
       <Footer></Footer>

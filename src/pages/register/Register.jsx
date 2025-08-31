@@ -94,7 +94,7 @@ const Register = () => {
 
             <input
               type="submit"
-              className="w-full bg-[#05AF2B] py-[14px] rounded-[46px] text-white"
+              className="w-full bg-[#05AF2B] hover:bg-[#16bb3a] py-[14px] rounded-[46px] text-white cursor-pointer"
               value="Create Account"
             />
           </form>

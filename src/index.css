@@ -60,3 +60,31 @@ mask-repeat: no-repeat;
 .register-ellipse{
   border-radius: 28% 72% 62% 38% / 41% 48% 52% 59%;
 }
+
+.footerLink{
+  padding-top: 42px;
+  padding-bottom: 85px;
+}
+
+.footerLink h4{
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 26px;
+}
+
+ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footerLink li{
+  color: #CCCCCC;
+  display: inline-block;
+}
+
+.footerLink li:hover{
+  color: white;
+}

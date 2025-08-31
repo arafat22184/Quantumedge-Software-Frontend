@@ -6,6 +6,7 @@ import { CiLock } from "react-icons/ci";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaApple, FaFacebookF } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
+import { IoMdClose } from "react-icons/io";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
@@ -21,7 +22,7 @@ const Register = () => {
 
   return (
     <section>
-      <div className="max-w-7xl mx-auto bg-[#071400] flex my-36 p-10 rounded-[28px] justify-between gap-36 text-[#4B4B4B] text-center text-sm font-semibold">
+      <div className="max-w-7xl mx-auto bg-[#071400] flex my-12 p-10 pl-[119px] rounded-[28px] justify-between gap-36 text-[#4B4B4B] text-center text-sm font-semibold">
         {/* Form */}
         <div className="flex-1 max-w-[447px]">
           {/* Heading */}
@@ -96,7 +97,7 @@ const Register = () => {
           </div>
 
           {/* Social Login Buttons */}
-          <div className="flex items-cente gap-[30px]">
+          <div className="flex items-cente gap-[30px] mb-10">
             {/* Facebook */}
             <div className={socialButtonStyle}>
               <FaFacebookF size={26} />
@@ -112,11 +113,32 @@ const Register = () => {
               <BsTwitterX size={26} />
             </div>
           </div>
+
+          {/* Terms and Condition */}
+          <p className="text-[#888888]">
+            By joining, you agree to the Fiverr{" "}
+            <span className="text-[#05AF2B] underline">Terms of Service</span>{" "}
+            and to occasionally receive emails from us. Please read our{" "}
+            <span className="text-[#05AF2B] underline">Privacy Policy</span> to
+            learn how we use your personal data.
+          </p>
         </div>
 
         {/* Image */}
-        <div className="flex-1">
-          <img src={regimg} alt="employee image" />
+        <div className="flex-1 relative">
+          <div className="inverted-radius-top h-full">
+            <img
+              src={regimg}
+              className="h-full object-cover object-center rounded-tl-2xl rounded-br-2xl rounded-[16px] inverted-radius-bottom"
+              alt="employee image"
+            />
+          </div>
+          <div className="absolute w-[45px] h-[45px] top-0 right-0">
+            <IoMdClose
+              className="text-[#05AF2B] rounded-full bg-[#1B1B1B] border border-[#4B4B4B] p-1 w-full h-full"
+              size={32}
+            />
+          </div>
         </div>
       </div>
     </section>

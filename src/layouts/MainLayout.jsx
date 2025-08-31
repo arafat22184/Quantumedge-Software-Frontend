@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 const MainLayout = () => {
   return (
     <div>
-      <header className="bg-[#071400]">
+      <header className="bg-[#071400] sticky top-0 z-50">
         <Navbar></Navbar>
       </header>
       <Outlet></Outlet>

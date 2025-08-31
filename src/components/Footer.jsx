@@ -8,7 +8,7 @@ import footerImage from "../assets/footerImage.png";
 const Footer = () => {
   return (
     <footer className="bg-[#071400] py-11">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1400px] mx-auto">
         {/* header part */}
         <div className="flex gap-[200px] mb-[46px]">
           <h3 className="text-[32px] font-bold text-white">

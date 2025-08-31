@@ -22,7 +22,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="navbar py-5 max-w-7xl mx-auto text-sm font-semibold text-white">
+    <nav className="navbar py-5 max-w-[1400px] mx-auto text-sm font-semibold text-white">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

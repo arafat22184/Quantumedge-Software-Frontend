@@ -21,7 +21,7 @@ const Login = () => {
   };
   return (
     <section>
-      <div className="max-w-7xl mx-2 xl:mx-auto bg-[#071400] flex my-12 p-10 lg:pl-[119px] rounded-[28px] justify-between gap-36 text-[#4B4B4B] text-center text-sm font-semibold relative">
+      <div className="max-w-[1400px] mx-2 xl:mx-auto bg-[#071400] flex my-12 p-10 lg:pl-[119px] rounded-[28px] justify-between gap-36 text-[#4B4B4B] text-center text-sm font-semibold relative">
         {/* Flare effect */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="absolute w-[405px] h-[368px] bg-[#05AF2B] opacity-30 blur-[173.4px] rounded-full"></div>

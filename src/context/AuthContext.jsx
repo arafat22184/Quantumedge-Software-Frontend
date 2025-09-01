@@ -26,6 +26,10 @@ export const AuthProvider = ({ children }) => {
       .then((data) => {
         setAllProjects(data);
         setProjectLoading(false);
+      })
+      .catch((err) => {
+        console.error("Failed to fetch jobs:", err);
+        setProjectLoading(false);
       });
   }, []);
 

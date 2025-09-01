@@ -5,6 +5,7 @@ import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import ProtectedRoute from "../components/ProtectedRoute";
 import AddJob from "../pages/addJob/AddJob";
+import UpdateJob from "../pages/updateJob/UpdateJob";
 
 const router = createBrowserRouter([
   {
@@ -16,10 +17,18 @@ const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "addJob",
+        path: "/addJob",
         element: (
           <ProtectedRoute>
             <AddJob></AddJob>
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/updateJob/:id",
+        element: (
+          <ProtectedRoute>
+            <UpdateJob></UpdateJob>
           </ProtectedRoute>
         ),
       },

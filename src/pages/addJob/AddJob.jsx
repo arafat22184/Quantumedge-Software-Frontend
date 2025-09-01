@@ -78,14 +78,17 @@ const AddJob = () => {
         }),
       };
 
-      const res = await fetch("http://localhost:3000/api/jobs", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(jobData),
-      });
+      const res = await fetch(
+        "https://quantumedge-software-backend.onrender.com/api/jobs",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(jobData),
+        }
+      );
 
       const data = await res.json();
       setAllProjects([...allProjects, jobData]);

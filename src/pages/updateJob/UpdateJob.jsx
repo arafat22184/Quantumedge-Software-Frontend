@@ -36,9 +36,12 @@ const UpdateJob = () => {
     const fetchJobData = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:3000/api/jobs/${id}`, {
-          credentials: "include",
-        });
+        const res = await fetch(
+          `https://quantumedge-software-backend.onrender.com/api/jobs/${id}`,
+          {
+            credentials: "include",
+          }
+        );
 
         if (!res.ok) throw new Error("Failed to fetch job data");
 
@@ -105,14 +108,17 @@ const UpdateJob = () => {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/api/jobs/${id}`, {
-        method: "PUT",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `https://quantumedge-software-backend.onrender.com/api/jobs/${id}`,
+        {
+          method: "PUT",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to update job");

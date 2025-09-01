@@ -37,7 +37,7 @@ const ProjectCard = ({ project, user }) => {
     if (result.isConfirmed) {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/jobs/${project._id}`,
+          `https://quantumedge-software-backend.onrender.com/api/jobs/${project._id}`,
           {
             method: "DELETE",
             credentials: "include",

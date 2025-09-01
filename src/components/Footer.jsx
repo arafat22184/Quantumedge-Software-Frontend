@@ -8,9 +8,9 @@ import footerImage from "../assets/footerImage.png";
 const Footer = () => {
   return (
     <footer className="bg-[#071400] py-11">
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px] mx-auto px-4 xl:px-0">
         {/* header part */}
-        <div className="flex gap-[200px] mb-[46px]">
+        <div className="flex flex-col xl:flex-row gap-4 xl:gap-[200px] mb-[46px]">
           <h3 className="text-[32px] font-bold text-white">
             Reach Your Requirement Goals Right
             <br /> on Schedule
@@ -29,14 +29,14 @@ const Footer = () => {
         </div>
 
         {/* Main part */}
-        <div className="grid grid-cols-4 justify-items-center border-t-2 border-[#CCCCCC]/6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-0 lg:justify-items-center border-t-2 border-[#CCCCCC]/6">
           {/* Logo */}
           <div className="justify-self-start mt-[42px]">
             <img className="max-w-[227px]" src={logo} alt="Logo" />
           </div>
 
           {/* About */}
-          <div className="footerLink w-full justify-items-center border-r-2 border-[#CCCCCC]/6">
+          <div className="footerLink lg:pt-[42px] lg:pb-[85px] w-full lg:justify-items-center lg:border-r-2 border-[#CCCCCC]/6">
             <div>
               <h4>About</h4>
               <ul>
@@ -54,7 +54,7 @@ const Footer = () => {
           </div>
 
           {/* Categories */}
-          <div className="footerLink w-full justify-items-center border-r-2 border-b-2 border-[#CCCCCC]/6">
+          <div className="footerLink lg:pt-[42px] lg:pb-[85px] w-full lg:justify-items-center lg:border-r-2 lg:border-b-2 border-[#CCCCCC]/6">
             <div>
               <h4>Categories</h4>
               <ul>
@@ -75,7 +75,7 @@ const Footer = () => {
           </div>
 
           {/* Support */}
-          <div className="footerLink w-full justify-items-center border-b-2 border-[#CCCCCC]/6">
+          <div className="footerLink lg:pt-[42px] lg:pb-[85px] w-full lg:justify-items-center lg:border-b-2 border-[#CCCCCC]/6">
             <div>
               <h4>Support</h4>
               <ul>
@@ -97,9 +97,9 @@ const Footer = () => {
         </div>
 
         {/* Social-Media Icon & Latest Posts */}
-        <div className="grid grid-cols-2 items-center mt-[17px] pb-[34px] border-b-2 border-[#CCCCCC]/6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center mt-[17px] pb-[34px] border-b-2 border-[#CCCCCC]/6">
           {/* Social-Media Icons */}
-          <div className="flex gap-[14px] relative">
+          <div className="flex justify-center xl:justify-start gap-[14px] relative">
             <a
               className="rounded-full w-10 h-10 bg-[#05AF2B] text-white flex items-center justify-center"
               href="https://www.facebook.com/"
@@ -129,11 +129,11 @@ const Footer = () => {
           </div>
 
           {/* Latest Posts */}
-          <div>
+          <div className="mt-4 lg:mt-0">
             <h1 className="text-lg text-white font-bold mb-[21px]">
               Our Popular Post
             </h1>
-            <div className="flex">
+            <div className="flex flex-col lg:flex-row gap-4 lg:gap-0">
               {/* 1st popular post */}
               <div className="flex gap-[18px]">
                 <img src={footerImage} alt="Popular post" />

@@ -61,10 +61,7 @@ mask-repeat: no-repeat;
   border-radius: 28% 72% 62% 38% / 41% 48% 52% 59%;
 }
 
-.footerLink{
-  padding-top: 42px;
-  padding-bottom: 85px;
-}
+
 
 .footerLink h4{
   color: white;
@@ -89,17 +86,8 @@ ul{
   color: white;
 }
 
-/* .inputStyle{
-  
-      border: "2px solid transparent",
-        border-image: "linear-gradient(90.73deg, #D86F13 2.13%, #55C41A 5.16%, #05AF2B 7.08%, rgba(102,102,102,0.08) 41.19%)",
-        borderImageSlice: 1,
-        borderRadius: "10px",
-        backgroundClip: "padding-box",
-    } */
-
-    .searchInput{
+.searchInput{
       border: 2px solid transparent;
       background: linear-gradient(#202b19, #202b19) padding-box, linear-gradient(90.73deg, #D86F13 2.13%, #55C41A 5.16%, #05AF2B 7.08%, rgba(102, 102, 102, 0.08) 41.19%) border-box;
       border-radius: 10px;
-    }
+}

@@ -2,13 +2,37 @@ import React from "react";
 import { Link } from "react-router";
 import logo from "../assets/logo.png";
 import { BiCategory } from "react-icons/bi";
+import { useAuth } from "../context/AuthContext";
+import { FaRegUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
-  const user = false;
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
   const conditionalLink = user ? (
-    <p>Hello user</p>
+    <>
+      <div className="relative group">
+        {/* Avatar/Icon */}
+        <FaRegUserCircle className="text-[#05AF2B]" size={26} />
+
+        {/* Tooltip */}
+        <span className="absolute -bottom-12 mb-2 left-1/2 -translate-x-1/2 bg-[#05AF2B] text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          {user.name}
+        </span>
+      </div>
+
+      <button
+        onClick={handleLogout}
+        className="cursor-pointer py-2.5 px-5 border hover:bg-red-950 border-red-500 rounded-[46px]"
+      >
+        Log out
+      </button>
+    </>
   ) : (
     <>
+      <p className="hover:text-[#05AF2B] cursor-pointer">BECAME A SELLER</p>
       <Link to={"/login"} className="hover:text-[#05AF2B] cursor-pointer">
         Login
       </Link>
@@ -22,8 +46,8 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="navbar py-5 max-w-[1400px] mx-auto text-sm font-semibold text-white">
-      <div className="navbar-start">
+    <nav className="navbar justify-between py-5 max-w-[1400px] mx-auto text-sm font-semibold text-white">
+      <div className="inline-flex items-center width-1/2">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -58,12 +82,7 @@ const Navbar = () => {
                 <option className="bg-green-950">Employment</option>
               </select>
             </form>
-            <div className="flex gap-7 items-center">
-              <p className="hover:text-[#05AF2B] cursor-pointer">
-                BECAME A SELLER
-              </p>
-              {conditionalLink}
-            </div>
+            <div className="flex gap-7 items-center">{conditionalLink}</div>
           </div>
         </div>
         <div className="flex items-center gap-2.5 md:gap-[35px]">
@@ -76,7 +95,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="navbar-center hidden lg:flex gap-12">
+      <div className="hidden lg:flex gap-12">
         <form className="relative">
           <input
             className="bg-white/10 min-h-12 lg:min-w-[345px] rounded-lg text-white pl-36"
@@ -89,10 +108,7 @@ const Navbar = () => {
             <option className="bg-green-950">Employment</option>
           </select>
         </form>
-        <div className="flex gap-7 items-center">
-          <p className="hover:text-[#05AF2B] cursor-pointer">BECAME A SELLER</p>
-          {conditionalLink}
-        </div>
+        <div className="flex gap-7 items-center">{conditionalLink}</div>
       </div>
     </nav>
   );

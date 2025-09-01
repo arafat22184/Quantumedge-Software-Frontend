@@ -10,7 +10,7 @@ const Projects = () => {
     return <p>Loading...</p>;
   }
   return (
-    <section className="mb-15.5 max-w-[1440px] mx-auto">
+    <section className="mb-15.5 max-w-[1440px] mx-auto px-2 lg:px-0">
       <h1 className="font-bold text-[32px] mb-7.5">
         {allProjects?.length} search result(s) found
       </h1>

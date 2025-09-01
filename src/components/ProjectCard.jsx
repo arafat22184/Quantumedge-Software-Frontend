@@ -3,8 +3,11 @@ import { FiBriefcase } from "react-icons/fi";
 import { GrUserWorker } from "react-icons/gr";
 import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router";
+import Swal from "sweetalert2";
+import { useAuth } from "../context/AuthContext";
 
 const ProjectCard = ({ project, user }) => {
+  const { setAllProjects } = useAuth();
   const {
     title,
     price,
@@ -18,12 +21,46 @@ const ProjectCard = ({ project, user }) => {
     postedDate,
     authorEmail,
   } = project;
-
-  const handleDelete = () => {
-    console.log("delete");
-  };
-
   const isAuthor = authorEmail === user?.email;
+
+  const handleDelete = async () => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#05AF2B",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/jobs/${project._id}`,
+          {
+            method: "DELETE",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        const data = response.status !== 204 ? await response.json() : {};
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to delete job");
+        }
+
+        Swal.fire("Deleted!", "Your job has been deleted.", "success");
+
+        setAllProjects((prev) => prev.filter((job) => job._id !== project._id));
+      } catch (err) {
+        Swal.fire("Error!", err.message, "error");
+      }
+    }
+  };
 
   return (
     <div className="pt-6 pb-8.5 pl-5 pr-10 text-sm rounded-2xl hover:shadow-2xl group cursor-pointer">
@@ -35,7 +72,11 @@ const ProjectCard = ({ project, user }) => {
         <p className="text-[#888888]">{pricingType}</p>
         <p className="font-semibold text-[#4B4B4B]">{price}</p>
       </div>
-      <p className="text-[16px] text-[#4B4B4B] mt-5 mb-8.5">{description}</p>
+      <p className="text-[16px] text-[#4B4B4B] mt-5 mb-8.5">
+        {description.length > 100
+          ? description.slice(0, 120) + "..."
+          : description}
+      </p>
 
       {/* details */}
       <div className="flex items-center gap-2.5">

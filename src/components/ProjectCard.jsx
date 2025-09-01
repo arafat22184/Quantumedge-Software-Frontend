@@ -2,68 +2,103 @@ import React from "react";
 import { FiBriefcase } from "react-icons/fi";
 import { GrUserWorker } from "react-icons/gr";
 import { IoLocationOutline } from "react-icons/io5";
+import { Link } from "react-router";
 
-const ProjectCard = () => {
+const ProjectCard = ({ project, user }) => {
+  const {
+    title,
+    price,
+    pricingType,
+    description,
+    location,
+    experienceLevel,
+    vacancy,
+    skills,
+    postedBy,
+    postedDate,
+    authorEmail,
+  } = project;
+
+  const handleDelete = () => {
+    console.log("delete");
+  };
+
+  const isAuthor = authorEmail === user?.email;
+
   return (
     <div className="pt-6 pb-8.5 pl-5 pr-10 text-sm rounded-2xl hover:shadow-2xl group cursor-pointer">
-      <p className="text-[#888888]">Apr 30, 2024</p>
+      <p className="text-[#888888]">{postedDate}</p>
       <h2 className="text-xl font-bold text-[#4B4B4B] mt-[9px] mb-[22px]">
-        Website Design and Front-End Development
+        {title}
       </h2>
       <div className="bg-[#CCCCCC]/20 py-[11px] pl-[22px] pr-[25px] flex justify-between items-center rounded-[5px]">
-        <p className="text-[#888888]">Fixed Price Project</p>
-        <p className="font-semibold text-[#4B4B4B]">$1,200-$1,400</p>
+        <p className="text-[#888888]">{pricingType}</p>
+        <p className="font-semibold text-[#4B4B4B]">{price}</p>
       </div>
-      <p className="text-[16px] text-[#4B4B4B] mt-5 mb-8.5">
-        In this role, you will be responsible for conducting comprehensive SEO
-        audits and implementing strategies to optimize websites...
-      </p>
+      <p className="text-[16px] text-[#4B4B4B] mt-5 mb-8.5">{description}</p>
 
       {/* details */}
       <div className="flex items-center gap-2.5">
         {/* Working Location */}
         <div className="bg-[#FAF7FF] text-[#9747FF] flex items-center gap-[5px] p-[5px] rounded-[23px]">
           <IoLocationOutline />
-          <p>App Design</p>
+          <p>{location}</p>
         </div>
 
         {/* Experience level */}
         <div className="bg-[#FFF5F5] text-[#DB3131] flex items-center gap-[5px] p-[5px] rounded-[23px]">
           <FiBriefcase />
-          <p>Senior level</p>
+          <p>{experienceLevel}</p>
         </div>
 
-        {/* Skill level */}
+        {/* Vacancy */}
         <div className="bg-[#E9FFEE] text-[#05AF2B] flex items-center gap-[5px] p-[5px] rounded-[23px]">
           <GrUserWorker />
-          <p>2 Freelancer</p>
+          <p>{vacancy}</p>
         </div>
       </div>
 
       {/* details */}
       <div className="flex mt-8.5 mb-4 gap-2.5">
-        <p className="font-semibold py-[6px] px-4 bg-[#CCCCCC]/18 rounded-xl">
-          App Design
-        </p>
-        <p className="font-semibold py-[6px] px-4 bg-[#CCCCCC]/18 rounded-xl">
-          Art Generation
-        </p>
-        <p className="font-semibold py-[6px] px-4 bg-[#CCCCCC]/18 rounded-xl">
-          Illustration
-        </p>
+        {skills.slice(0, 3).map((skill) => (
+          <p
+            key={skill}
+            className="font-semibold py-[6px] px-4 bg-[#CCCCCC]/18 rounded-xl"
+          >
+            {skill}
+          </p>
+        ))}
       </div>
+      {skills.length > 3 && (
+        <p className="font-semibold">+{skills.length - 3} more</p>
+      )}
 
       <p className="text-[#CCCCCC] my-5">
         Posted by{" "}
-        <span className="text-[16px] text-black font-semibold">
-          Eamman Olio
-        </span>
+        <span className="text-[16px] text-black font-semibold">{postedBy}</span>
       </p>
 
       {/* Button */}
-      <button className="py-[9px] px-6 bg-black text-white rounded-[22px] transition-colors duration-300 group-hover:bg-[#05AF2B] cursor-pointer">
-        Apply Now
-      </button>
+      {isAuthor ? (
+        <div className="flex items-center gap-4">
+          <Link
+            to={`/updateJob/${project._id}`}
+            className="py-[9px] px-6 bg-black text-white rounded-[22px] transition-colors duration-300 cursor-pointer hover:bg-[#05AF2B]"
+          >
+            Edit Job
+          </Link>
+          <button
+            onClick={handleDelete}
+            className="py-[9px] px-6 bg-red-500 text-white rounded-[22px] transition-colors duration-300 cursor-pointer hover:bg-red-600"
+          >
+            Delete Job
+          </button>
+        </div>
+      ) : (
+        <button className="py-[9px] px-6 bg-black text-white rounded-[22px] transition-colors duration-300 group-hover:bg-[#05AF2B] cursor-pointer">
+          Apply Now
+        </button>
+      )}
     </div>
   );
 };

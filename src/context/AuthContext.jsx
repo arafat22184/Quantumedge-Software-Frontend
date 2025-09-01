@@ -13,6 +13,21 @@ const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [allProjects, setAllProjects] = useState([]);
+  const [projectLoading, setProjectLoading] = useState(false);
+
+  useEffect(() => {
+    setProjectLoading(true);
+    fetch(`${API_URL}/api/jobs`, {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setAllProjects(data);
+        setProjectLoading(false);
+      });
+  }, []);
 
   const fetchMe = useCallback(async () => {
     try {
@@ -74,7 +89,16 @@ export const AuthProvider = ({ children }) => {
     toast.info("Logged out");
   };
 
-  const authInfo = { user, loading, register, login, logout };
+  const authInfo = {
+    user,
+    loading,
+    register,
+    login,
+    logout,
+    allProjects,
+    setAllProjects,
+    projectLoading,
+  };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

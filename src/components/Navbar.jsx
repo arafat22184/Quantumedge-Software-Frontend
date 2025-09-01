@@ -11,8 +11,12 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
   };
+
   const conditionalLink = user ? (
     <>
+      <Link to={"/addJob"} className="hover:text-[#05AF2B] cursor-pointer">
+        Add job
+      </Link>
       <div className="relative group">
         {/* Avatar/Icon */}
         <FaRegUserCircle className="text-[#05AF2B]" size={26} />

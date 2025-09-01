@@ -27,8 +27,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(formData); // sets user + cookie
-      setTimeout(() => navigate("/jobs"), 800);
+      await login(formData);
+      setTimeout(() => navigate("/"), 800);
     } catch (err) {
       toast.error(err.message);
     }

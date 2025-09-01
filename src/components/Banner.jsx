@@ -6,13 +6,13 @@ const Banner = () => {
   return (
     <section className="bg-[#071400] mb-23 relative">
       {/* Search Method */}
-      <form className="max-w-[1400px] mx-auto space-x-5.5 pt-[77px] pb-23 border-t-2 border-[#CCCCCC]/6">
+      <form className="max-w-[1400px] mx-auto space-x-5.5 pt-[77px] pb-23 border-t-2 border-[#CCCCCC]/6 px-2 xl:px-0">
         <div className="relative inline-block">
           <input
             type="search"
             name="searchBanner"
             placeholder="Search your needs"
-            className="min-h-[58px] w-[566px] text-white pl-[40px] pr-[208px] searchInput outline-none"
+            className="min-h-[58px] w-[410px] lg:w-[566px] text-white pl-[40px] pr-[208px] searchInput outline-none"
           />
           {/* Select */}
           <select className="text-white rounded-full flex justify-center items-center absolute right-16.5 top-1/2 -translate-y-1/2 bg-transparent border-none outline-none">

@@ -39,7 +39,7 @@ const Register = () => {
         email: formData.email,
         password: formData.password,
       });
-      setTimeout(() => navigate("/jobs"), 800);
+      setTimeout(() => navigate("/"), 800);
     } catch (err) {
       toast.error(err.message);
     }

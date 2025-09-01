@@ -1,24 +1,39 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
-import regimg from "../../assets/reg-image.jpg";
+import { Link, useNavigate } from "react-router";
 import { MdMailOutline } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaApple, FaFacebookF } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
+import { toast } from "react-toastify";
+import regimg from "../../assets/reg-image.jpg";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
   const inputStyle =
     "border border-[#4B4B4B] rounded-[46px] focus:border-[#05AF2B] outline-none min-h-[50px] w-full pl-15";
-
   const socialButtonStyle =
     "py-4 text-white bg-[#1E1E1E] rounded-[46px] flex-1 flex justify-center cursor-pointer hover:bg-[#292828]";
 
-  const passShowCondition = () => {
-    setShowPass(!showPass);
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await login(formData); // sets user + cookie
+      setTimeout(() => navigate("/jobs"), 800);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
+
   return (
     <section>
       <div className="max-w-[1400px] mx-2 xl:mx-auto bg-[#071400] flex my-12 p-10 lg:pl-[119px] rounded-[28px] justify-between gap-36 text-[#4B4B4B] text-center text-sm font-semibold relative">
@@ -29,50 +44,55 @@ const Login = () => {
 
         {/* Form */}
         <div className="flex-1 lg:max-w-[447px] py-[50px]">
-          {/* Heading */}
           <h3 className="text-[32px] font-bold text-white">
             Login your account
           </h3>
           <p className="text-white mt-2.5 mb-9">
             Don't have an account?{" "}
-            <Link className="text-[#05AF2B]" to={"/register"}>
+            <Link className="text-[#05AF2B]" to="/register">
               Sign Up
             </Link>
           </p>
 
-          {/* Registration Form */}
-          <form className="flex flex-col gap-[30px]">
+          <form className="flex flex-col gap-[30px]" onSubmit={handleSubmit}>
             <div className="relative">
               <input
                 type="email"
                 name="email"
                 placeholder="Email Address"
                 className={inputStyle}
-                autoComplete="true"
+                autoComplete="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
               />
-              <MdMailOutline size={"24"} className="absolute top-3 left-6" />
+              <MdMailOutline size={24} className="absolute top-3 left-6" />
             </div>
 
-            {/* Password */}
             <div className="relative">
               <input
                 type={showPass ? "text" : "password"}
                 name="password"
                 placeholder="Password"
                 className={inputStyle}
-                autoComplete="true"
+                autoComplete="current-password"
+                value={formData.password}
+                onChange={handleChange}
+                required
               />
-              <CiLock size={"24"} className="absolute top-3 left-6" />
-              <div onClick={passShowCondition} className="cursor-pointer">
+              <CiLock size={24} className="absolute top-3 left-6" />
+              <div
+                onClick={() => setShowPass(!showPass)}
+                className="cursor-pointer"
+              >
                 {showPass ? (
-                  <FiEyeOff size={"24"} className="absolute top-3 right-6" />
+                  <FiEyeOff size={24} className="absolute top-3 right-6" />
                 ) : (
-                  <FiEye size={"24"} className="absolute top-3 right-6" />
+                  <FiEye size={24} className="absolute top-3 right-6" />
                 )}
               </div>
             </div>
 
-            {/* Remember User */}
             <div className="flex items-center justify-between">
               <div className="flex gap-3 items-center">
                 <input
@@ -82,7 +102,7 @@ const Login = () => {
                 <p className="text-white text-sm font-semibold">Remember Me</p>
               </div>
               <Link
-                to={"/forgot-pass"}
+                to="/forgot-pass"
                 className="text-sm font-semibold text-[#CCCCCC]"
               >
                 Forgot Password?
@@ -96,24 +116,17 @@ const Login = () => {
             />
           </form>
 
-          {/* Divider */}
           <div className="divider before:h-[1px] after:h-[1px] before:bg-[#4B4B4B] after:bg-[#4B4B4B] text-white my-10">
             or
           </div>
 
-          {/* Social Login Buttons */}
           <div className="flex items-cente gap-[30px] mb-10">
-            {/* Facebook */}
             <div className={socialButtonStyle}>
               <FaFacebookF size={26} />
             </div>
-
-            {/* Apple */}
             <div className={socialButtonStyle}>
               <FaApple size={26} />
             </div>
-
-            {/* Twitter */}
             <div className={socialButtonStyle}>
               <BsTwitterX size={26} />
             </div>
@@ -126,7 +139,7 @@ const Login = () => {
             <img
               src={regimg}
               className="h-full object-cover object-center rounded-tl-2xl rounded-br-2xl rounded-[16px] inverted-radius-bottom"
-              alt="employee image"
+              alt="employee"
             />
           </div>
           <div className="absolute w-[45px] h-[45px] top-0 right-0">

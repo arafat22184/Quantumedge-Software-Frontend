@@ -1,23 +1,48 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
-import regimg from "../../assets/reg-image.jpg";
-import { MdMailOutline } from "react-icons/md";
+import { Link, useNavigate } from "react-router";
+import { MdMailOutline, MdOutlineDriveFileRenameOutline } from "react-icons/md";
 import { CiLock } from "react-icons/ci";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FaApple, FaFacebookF } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { IoMdClose } from "react-icons/io";
+import { toast } from "react-toastify";
+import regimg from "../../assets/reg-image.jpg";
+import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const navigate = useNavigate();
+  const { register } = useAuth();
+
   const inputStyle =
     "border border-[#4B4B4B] rounded-[46px] focus:border-[#05AF2B] outline-none min-h-[50px] w-full pl-15";
-
   const socialButtonStyle =
     "py-4 text-white bg-[#1E1E1E] rounded-[46px] flex-1 flex justify-center cursor-pointer hover:bg-[#292828]";
 
-  const passShowCondition = () => {
-    setShowPass(!showPass);
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmPassword)
+      return toast.error("Passwords do not match");
+    try {
+      await register({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      });
+      setTimeout(() => navigate("/jobs"), 800);
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   return (
@@ -30,64 +55,88 @@ const Register = () => {
 
         {/* Form */}
         <div className="flex-1 lg:max-w-[447px]">
-          {/* Heading */}
           <h3 className="text-[32px] font-bold text-white">
             Open your account
           </h3>
           <p className="text-white mt-2.5 mb-9">
             Already have an account?{" "}
-            <Link className="text-[#05AF2B]" to={"/login"}>
+            <Link className="text-[#05AF2B]" to="/login">
               Sign in
             </Link>
           </p>
 
-          {/* Registration Form */}
-          <form className="flex flex-col gap-[30px]">
+          <form className="flex flex-col gap-[30px]" onSubmit={handleSubmit}>
+            <div className="relative">
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name"
+                className={inputStyle}
+                autoComplete="name"
+                onChange={handleChange}
+                required
+              />
+              <MdOutlineDriveFileRenameOutline
+                size={24}
+                className="absolute top-3 left-6"
+              />
+            </div>
+
             <div className="relative">
               <input
                 type="email"
                 name="email"
                 placeholder="Email Address"
                 className={inputStyle}
-                autoComplete="true"
+                autoComplete="email"
+                onChange={handleChange}
+                required
               />
-              <MdMailOutline size={"24"} className="absolute top-3 left-6" />
+              <MdMailOutline size={24} className="absolute top-3 left-6" />
             </div>
 
-            {/* Password */}
             <div className="relative">
               <input
                 type={showPass ? "text" : "password"}
                 name="password"
                 placeholder="Password"
                 className={inputStyle}
-                autoComplete="true"
+                autoComplete="new-password"
+                onChange={handleChange}
+                required
               />
-              <CiLock size={"24"} className="absolute top-3 left-6" />
-              <div onClick={passShowCondition} className="cursor-pointer">
+              <CiLock size={24} className="absolute top-3 left-6" />
+              <div
+                onClick={() => setShowPass(!showPass)}
+                className="cursor-pointer"
+              >
                 {showPass ? (
-                  <FiEyeOff size={"24"} className="absolute top-3 right-6" />
+                  <FiEyeOff size={24} className="absolute top-3 right-6" />
                 ) : (
-                  <FiEye size={"24"} className="absolute top-3 right-6" />
+                  <FiEye size={24} className="absolute top-3 right-6" />
                 )}
               </div>
             </div>
 
-            {/* Confirm Password */}
             <div className="relative">
               <input
                 type={showPass ? "text" : "password"}
-                name="confirm-password"
+                name="confirmPassword"
                 placeholder="Confirm Password"
                 className={inputStyle}
-                autoComplete="true"
+                autoComplete="new-password"
+                onChange={handleChange}
+                required
               />
-              <CiLock size={"24"} className="absolute top-3 left-6" />
-              <div onClick={passShowCondition} className="cursor-pointer">
+              <CiLock size={24} className="absolute top-3 left-6" />
+              <div
+                onClick={() => setShowPass(!showPass)}
+                className="cursor-pointer"
+              >
                 {showPass ? (
-                  <FiEyeOff size={"24"} className="absolute top-3 right-6" />
+                  <FiEyeOff size={24} className="absolute top-3 right-6" />
                 ) : (
-                  <FiEye size={"24"} className="absolute top-3 right-6" />
+                  <FiEye size={24} className="absolute top-3 right-6" />
                 )}
               </div>
             </div>
@@ -99,36 +148,27 @@ const Register = () => {
             />
           </form>
 
-          {/* Divider */}
           <div className="divider before:h-[1px] after:h-[1px] before:bg-[#4B4B4B] after:bg-[#4B4B4B] text-white my-10">
             or
           </div>
 
-          {/* Social Login Buttons */}
           <div className="flex items-cente gap-[30px] mb-10">
-            {/* Facebook */}
             <div className={socialButtonStyle}>
               <FaFacebookF size={26} />
             </div>
-
-            {/* Apple */}
             <div className={socialButtonStyle}>
               <FaApple size={26} />
             </div>
-
-            {/* Twitter */}
             <div className={socialButtonStyle}>
               <BsTwitterX size={26} />
             </div>
           </div>
 
-          {/* Terms and Condition */}
           <p className="text-[#888888]">
             By joining, you agree to the Fiverr{" "}
             <span className="text-[#05AF2B] underline">Terms of Service</span>{" "}
             and to occasionally receive emails from us. Please read our{" "}
-            <span className="text-[#05AF2B] underline">Privacy Policy</span> to
-            learn how we use your personal data.
+            <span className="text-[#05AF2B] underline">Privacy Policy</span>.
           </p>
         </div>
 
@@ -138,7 +178,7 @@ const Register = () => {
             <img
               src={regimg}
               className="h-full object-cover object-center rounded-tl-2xl rounded-br-2xl rounded-[16px] inverted-radius-bottom"
-              alt="employee image"
+              alt="employee"
             />
           </div>
           <div className="absolute w-[45px] h-[45px] top-0 right-0">
